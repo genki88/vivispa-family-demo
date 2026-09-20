@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>店長管理頁｜幸福家族</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap-wide">
+
+  <div class="brandbar">
+    <div class="brand"><span class="dot"></span><div>幸福家族 · 店長管理頁<small>大坪林店 ｜ 2027.06.14</small></div></div>
+    <a class="backlink" href="index.html">回導覽</a>
+  </div>
+
+  <h1>店長管理頁</h1>
+  <p class="lead">店長每天只需要看這一頁。重點不是業績，是「今天有誰需要被記得」。</p>
+
+  <div class="sect">本店現況</div>
+  <div class="kpis">
+    <div class="kpi"><div class="k">家族成員</div><div class="v">128</div><div class="d">本店累計</div></div>
+    <div class="kpi"><div class="k">活躍成員</div><div class="v">82</div><div class="d up">64% · 30 天內有互動</div><div class="bar"><i style="width:64%"></i></div></div>
+    <div class="kpi"><div class="k">本月互動則數</div><div class="v">3.8</div><div class="d up">上限 4 則 · 未超額</div><div class="bar ink"><i style="width:95%"></i></div></div>
+    <div class="kpi"><div class="k">30 天開啟率</div><div class="v">78%</div><div class="d up">目標 ≥70%</div><div class="bar ink"><i style="width:78%"></i></div></div>
+  </div>
+
+  <div class="sect">今日待辦（4 件）</div>
+  <div class="card">
+    <div class="switch">
+      <div class="s-txt"><strong>3 位顧客今天療程</strong><span>需交付療癒處方籤並簽名負責</span></div>
+      <button class="btn btn-sm btn-rose" onclick="act('已開啟今日療程名單')">查看名單</button>
+    </div>
+    <div class="switch">
+      <div class="s-txt"><strong>2 位顧客天氣為「雷雨」</strong><span>建議今天主動發一則 30 秒關懷</span></div>
+      <button class="btn btn-sm btn-rose" onclick="act('已發送 2 則 30 秒關懷訊息')">一鍵關懷</button>
+    </div>
+    <div class="switch">
+      <div class="s-txt"><strong>1 位處方籤到期未回診</strong><span>林◯慧 · 建議回診日 6/10 · 已逾期 4 天</span></div>
+      <button class="btn btn-sm btn-rose" onclick="act('已發送回診提醒（30 秒版）')">發提醒</button>
+    </div>
+    <div class="switch">
+      <div class="s-txt"><strong>本店互動排程待確認</strong><span>7 月排程尚未送出</span></div>
+      <button class="btn btn-sm btn-ghost" onclick="act('已送出 7 月互動排程')">送出排程</button>
+    </div>
+  </div>
+
+  <div class="sect">需要關懷名單</div>
+  <div class="scroll-x">
+    <table class="table">
+      <thead>
+        <tr><th>顧客</th><th>幸福天氣</th><th>生活主張</th><th>上次互動</th><th>狀態</th><th>建議動作</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>陳◯婷</td><td><span class="tag warn">雷雨</span></td><td>我只想好好休息</td><td>3 天前</td>
+          <td><span class="tag rose">優先關懷</span></td><td>發一則 30 秒關懷</td>
+        </tr>
+        <tr>
+          <td>王◯雯</td><td><span class="tag warn">雷雨</span></td><td>我想把緊繃的日子鬆開</td><td>11 天前</td>
+          <td><span class="tag rose">優先關懷</span></td><td>發一則 30 秒關懷</td>
+        </tr>
+        <tr>
+          <td>林◯慧</td><td><span class="tag ink">多雲</span></td><td>我只想好好休息</td><td>26 天前</td>
+          <td><span class="tag grey">接近沉睡</span></td><td>處方籤回診提醒</td>
+        </tr>
+        <tr>
+          <td>黃◯君</td><td><span class="tag ink">多雲</span></td><td>我想優雅地與時間同行</td><td>34 天前</td>
+          <td><span class="tag grey">30 天未互動</span></td><td>發天氣卡即可，勿加推銷</td>
+        </tr>
+        <tr>
+          <td>吳◯芳</td><td><span class="tag ok">晴</span></td><td>我想讓消費也成為善意</td><td>5 天前</td>
+          <td><span class="tag ok">狀態良好</span></td><td>不需動作</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sect">互動紀律檢查</div>
+  <div class="card">
+    <table class="table">
+      <tr><th>檢查項目</th><th>標準</th><th>本店</th><th>判定</th></tr>
+      <tr><td>單則訊息長度</td><td>≤ 100 字</td><td>平均 62 字</td><td><span class="tag ok">達標</span></td></tr>
+      <tr><td>每月互動則數</td><td>≤ 4 則</td><td>3.8 則</td><td><span class="tag ok">達標</span></td></tr>
+      <tr><td>需顧客回覆的訊息</td><td>0 則</td><td>0 則</td><td><span class="tag ok">達標</span></td></tr>
+      <tr><td>需顧客出席的活動</td><td>0 場</td><td>0 場</td><td><span class="tag ok">達標</span></td></tr>
+      <tr><td>禁止話術出現次數</td><td>0 次</td><td>0 次</td><td><span class="tag ok">達標</span></td></tr>
+      <tr><td>封鎖率</td><td>≤ 5%</td><td>2.1%</td><td><span class="tag ok">達標</span></td></tr>
+    </table>
+  </div>
+
+  <div class="sect">本店同仁狀態</div>
+  <div class="card">
+    <div class="score"><div class="name">雅婷<small>專屬療癒師 · 服務 62 位成員</small></div><span class="tag ok">金牌療癒師</span></div>
+    <div class="score"><div class="name">怡君<small>專屬療癒師 · 服務 41 位成員</small></div><span class="tag ink">合格療癒師</span></div>
+    <div class="score"><div class="name">小敏<small>專屬療癒師 · 服務 25 位成員</small></div><span class="tag warn">輔導中 · 7/10 前回訓</span></div>
+  </div>
+
+  <div class="note rose">
+    <strong>店長每天只看這一頁</strong><br>
+    不用看業績報表，不用追進度。只要確認「今天有誰需要被記得」，把它做完就好。
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function act(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function () { t.classList.remove('show'); }, 2400);
+}
+</script>
+<script src="gate.js"></script>
+</body>
+</html>

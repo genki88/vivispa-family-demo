@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>公司管理頁｜幸福家族</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap-wide">
+
+  <div class="brandbar">
+    <div class="brand"><span class="dot"></span><div>幸福家族 · 公司管理頁<small>總部 ｜ 2027.06.14</small></div></div>
+    <a class="backlink" href="index.html">回導覽</a>
+  </div>
+
+  <h1>公司管理頁</h1>
+  <p class="lead">總部只看三件事：哪一店需要協助、哪一條鐵則被破壞、資源該往哪裡放。</p>
+
+  <div class="sect">全公司總覽</div>
+  <div class="kpis">
+    <div class="kpi"><div class="k">家族成員總數</div><div class="v">842</div><div class="d">目標 1,200 · 達成 70%</div><div class="bar"><i style="width:70%"></i></div></div>
+    <div class="kpi"><div class="k">全公司活躍率</div><div class="v">63%</div><div class="d up">目標 ≥60%</div><div class="bar"><i style="width:63%"></i></div></div>
+    <div class="kpi"><div class="k">NPS</div><div class="v">91</div><div class="d up">目標 ≥90</div><div class="bar ink"><i style="width:91%"></i></div></div>
+    <div class="kpi"><div class="k">老客貢獻占比</div><div class="v">76%</div><div class="d up">目標 ≥75%</div><div class="bar gold"><i style="width:76%"></i></div></div>
+  </div>
+
+  <div class="sect">異常警示（3 件）</div>
+  <div class="card" style="border-color:var(--rose-line);background:#FFFDFD">
+    <div class="switch">
+      <div class="s-txt"><strong>三重三和店 · 互動超額 + 封鎖率超標</strong><span>本月 6 則（上限 4）· 封鎖率 7%（上限 5%）· 另有 1 次禁止話術</span></div>
+      <button class="btn btn-sm btn-rose" onclick="act('已指派輔導：暫停該店互動排程並重新訓練')">指派輔導</button>
+    </div>
+    <div class="switch">
+      <div class="s-txt"><strong>淡水店 · 30 天開啟率僅 61%</strong><span>低於標準 70% · 需檢討內容品質（不得改為增加頻率）</span></div>
+      <button class="btn btn-sm btn-rose" onclick="act('已排入 7 月內容檢討會議')">排入檢討</button>
+    </div>
+    <div class="switch">
+      <div class="s-txt"><strong>板橋店 · 成員數成長停滯</strong><span>連續 2 個月未新增成員 · 入會邀請率偏低</span></div>
+      <button class="btn btn-sm btn-ghost" onclick="act('已調閱該店入會邀請紀錄')">調閱紀錄</button>
+    </div>
+  </div>
+
+  <div class="sect">各店比較</div>
+  <div class="scroll-x">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>門店</th><th class="num">成員數</th><th class="num">活躍率</th><th class="num">NPS</th>
+          <th class="num">本月互動</th><th class="num">封鎖率</th><th class="num">違規話術</th><th>判定</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>大坪林店</td><td class="num">128</td><td class="num">64%</td><td class="num">92</td><td class="num">3.8</td><td class="num">2.1%</td><td class="num">0</td><td><span class="tag ok">模範店</span></td></tr>
+        <tr><td>新店店</td><td class="num">112</td><td class="num">68%</td><td class="num">93</td><td class="num">3.5</td><td class="num">1.8%</td><td class="num">0</td><td><span class="tag ok">模範店</span></td></tr>
+        <tr><td>永和店</td><td class="num">104</td><td class="num">62%</td><td class="num">90</td><td class="num">4.0</td><td class="num">4.2%</td><td class="num">0</td><td><span class="tag ink">正常</span></td></tr>
+        <tr><td>三重三和店</td><td class="num">96</td><td class="num">58%</td><td class="num">84</td><td class="num">6.0</td><td class="num">7.0%</td><td class="num">1</td><td><span class="tag warn">需輔導</span></td></tr>
+        <tr><td>淡水店</td><td class="num">88</td><td class="num">61%</td><td class="num">88</td><td class="num">3.9</td><td class="num">3.4%</td><td class="num">0</td><td><span class="tag warn">需輔導</span></td></tr>
+        <tr><td>板橋店</td><td class="num">74</td><td class="num">57%</td><td class="num">89</td><td class="num">3.6</td><td class="num">2.9%</td><td class="num">0</td><td><span class="tag warn">成長停滯</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sect">全公司生活主張分布</div>
+  <div class="card">
+    <div style="margin:12px 0">
+      <div style="display:flex;justify-content:space-between;font-size:13px"><span>我只想好好休息</span><span class="mono">312 人 · 37%</span></div>
+      <div class="bar"><i style="width:37%"></i></div>
+    </div>
+    <div style="margin:12px 0">
+      <div style="display:flex;justify-content:space-between;font-size:13px"><span>我想把緊繃的日子鬆開</span><span class="mono">218 人 · 26%</span></div>
+      <div class="bar"><i style="width:26%"></i></div>
+    </div>
+    <div style="margin:12px 0">
+      <div style="display:flex;justify-content:space-between;font-size:13px"><span>我想重新喜歡鏡子裡的自己</span><span class="mono">156 人 · 19%</span></div>
+      <div class="bar"><i style="width:19%"></i></div>
+    </div>
+    <div style="margin:12px 0">
+      <div style="display:flex;justify-content:space-between;font-size:13px"><span>我想優雅地與時間同行</span><span class="mono">104 人 · 12%</span></div>
+      <div class="bar"><i style="width:12%"></i></div>
+    </div>
+    <div style="margin:12px 0">
+      <div style="display:flex;justify-content:space-between;font-size:13px"><span>我想讓消費也成為善意</span><span class="mono">52 人 · 6%</span></div>
+      <div class="bar"><i style="width:6%"></i></div>
+    </div>
+  </div>
+
+  <div class="sect">鐵則稽核彙總</div>
+  <div class="card">
+    <table class="table">
+      <tr><th>鐵則</th><th>標準</th><th>全公司</th><th>判定</th></tr>
+      <tr><td>顧客端時間成本</td><td>每月 ≤40 秒</td><td>38 秒</td><td><span class="tag ok">達標</span></td></tr>
+      <tr><td>需顧客出席場合</td><td>每年 ≤1 次</td><td>0 次</td><td><span class="tag ok">達標</span></td></tr>
+      <tr><td>顧客責任項數</td><td>= 0</td><td>0</td><td><span class="tag ok">達標</span></td></tr>
+      <tr><td>禁止話術次數</td><td>= 0</td><td>1 次（三重三和店）</td><td><span class="tag warn">待改善</span></td></tr>
+      <tr><td>平均封鎖率</td><td>≤ 5%</td><td>3.1%</td><td><span class="tag ok">達標</span></td></tr>
+    </table>
+    <p class="card-note">鐵則為否決項：任一項未達標，該門店當月不得申請幸福家族相關資源。</p>
+  </div>
+
+  <div class="note gold">
+    <strong>總部的角色</strong><br>
+    不是催業績，是防止門店為了業績把「不打擾」變成「一直打擾」。開啟率不足時，唯一允許的解法是把內容做得更好，不是發更多。
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function act(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function () { t.classList.remove('show'); }, 2600);
+}
+</script>
+<script src="gate.js"></script>
+</body>
+</html>
