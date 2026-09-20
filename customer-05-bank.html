@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>療癒時數銀行｜幸福家族</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brandbar">
+    <div class="brand"><span class="dot"></span><div>幸福家族<small>療癒時數銀行</small></div></div>
+    <a class="backlink" href="index.html">回導覽</a>
+  </div>
+
+  <h1>療癒時數銀行</h1>
+  <p class="lead">用不完的時數，不再是損失。可以存、可以送給家人朋友、也可以捐出去。</p>
+
+  <div class="card" style="background:linear-gradient(140deg,#22395C,#3A5177);color:#fff;border:none">
+    <div style="font-size:12px;opacity:.8;letter-spacing:.1em">我的可用時數</div>
+    <div style="font-size:38px;font-weight:700;letter-spacing:.02em;margin:4px 0">6.5 <span style="font-size:16px;font-weight:400">小時</span></div>
+    <div style="font-size:12px;opacity:.8">效期 2027.12.31 · 已自動展延，不需申請</div>
+  </div>
+
+  <div class="weather-row" style="grid-template-columns:repeat(3,1fr)">
+    <div class="wchip sel" data-tab="save"><span class="g">🏦</span><span class="n">存</span></div>
+    <div class="wchip" data-tab="give"><span class="g">🎁</span><span class="n">轉贈</span></div>
+    <div class="wchip" data-tab="donate"><span class="g">💗</span><span class="n">捐公益</span></div>
+  </div>
+
+  <!-- 存 -->
+  <div class="card" id="tab-save">
+    <div class="card-title">存起來</div>
+    <p class="card-note" style="margin-bottom:14px">未用完的時數自動展延，並回饋等值點數。妳什麼都不用做。</p>
+    <div class="score"><div class="name">自動展延<small>到期自動延長 12 個月</small></div><span class="tag ok">已開啟</span></div>
+    <div class="score"><div class="name">展延回饋<small>每展延 1 小時回饋 10 點</small></div><span class="tag ink">已累積 65 點</span></div>
+  </div>
+
+  <!-- 轉贈 -->
+  <div class="card hide" id="tab-give">
+    <div class="card-title">送給家人或朋友</div>
+    <div class="field">
+      <label class="f">贈送時數</label>
+      <input type="number" id="give-h" value="2" min="0.5" max="6.5" step="0.5">
+    </div>
+    <div class="field">
+      <label class="f">對方的稱謂（我們會發一張邀請卡給她）</label>
+      <input type="text" id="give-n" placeholder="例如：媽媽 / 小美">
+    </div>
+    <div class="note gold">
+      轉贈不是推薦，也沒有獎金。只是把妳用不到的時間，送給妳在乎的人。
+    </div>
+    <div style="margin-top:14px">
+      <button class="btn btn-rose" onclick="doGive()">確認轉贈</button>
+    </div>
+  </div>
+
+  <!-- 捐 -->
+  <div class="card hide" id="tab-donate">
+    <div class="card-title">捐給公益專案</div>
+    <div class="option sel" data-d="偏鄉女性放鬆計畫">
+      <div class="tick">✓</div>
+      <div class="txt"><strong>偏鄉女性放鬆計畫</strong><span>把療癒送給平常沒有機會休息的女性</span></div>
+    </div>
+    <div class="option" data-d="單親媽媽喘息計畫">
+      <div class="tick">✓</div>
+      <div class="txt"><strong>單親媽媽喘息計畫</strong><span>讓她們有兩小時真正屬於自己</span></div>
+    </div>
+    <div class="field" style="margin-top:14px">
+      <label class="f">捐贈時數</label>
+      <input type="number" id="don-h" value="1" min="0.5" max="6.5" step="0.5">
+    </div>
+    <div style="margin-top:6px">
+      <button class="btn btn-rose" onclick="doDonate()">確認捐贈</button>
+    </div>
+  </div>
+
+  <h2>為什麼要有時數銀行</h2>
+  <div class="card tight">
+    <table class="table">
+      <tr><td style="width:34%">傳統預付制</td><td>用不完 → 客訴 → 信任受損 → 不再續約</td></tr>
+      <tr><td>時數銀行</td><td>用不完 → 轉贈 → 朋友受惠 → 自然帶來新客</td></tr>
+    </table>
+  </div>
+
+  <div class="note rose">
+    <strong>時數是禮物，不是負債</strong><br>
+    轉贈＝最自然的推薦行為，而且不需要任何行銷費用。
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+document.querySelectorAll('.wchip').forEach(function (el) {
+  el.addEventListener('click', function () {
+    document.querySelectorAll('.wchip').forEach(function (o) { o.classList.remove('sel'); });
+    el.classList.add('sel');
+    ['save', 'give', 'donate'].forEach(function (t) {
+      document.getElementById('tab-' + t).classList.toggle('hide', t !== el.dataset.tab);
+    });
+  });
+});
+
+var donateTarget = '偏鄉女性放鬆計畫';
+document.querySelectorAll('#tab-donate .option').forEach(function (el) {
+  el.addEventListener('click', function () {
+    document.querySelectorAll('#tab-donate .option').forEach(function (o) { o.classList.remove('sel'); });
+    el.classList.add('sel');
+    donateTarget = el.dataset.d;
+  });
+});
+
+function doGive() {
+  var h = document.getElementById('give-h').value;
+  var n = document.getElementById('give-n').value || '對方';
+  toast('已轉贈 ' + h + ' 小時給 ' + n + '，邀請卡已發送');
+}
+
+function doDonate() {
+  var h = document.getElementById('don-h').value;
+  toast('已捐贈 ' + h + ' 小時給「' + donateTarget + '」');
+}
+
+function toast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function () { t.classList.remove('show'); }, 2800);
+}
+</script>
+<script src="gate.js"></script>
+</body>
+</html>

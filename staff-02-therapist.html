@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>專屬療癒師認證評分｜幸福家族</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap-wide">
+
+  <div class="brandbar">
+    <div class="brand"><span class="dot"></span><div>幸福家族 · 內部<small>專屬療癒師認證評分</small></div></div>
+    <a class="backlink" href="index.html">回導覽</a>
+  </div>
+
+  <h1>專屬療癒師認證評分表</h1>
+  <p class="lead">每季評一次。評分者：教育訓練部 ＋ 店長 ＋ 神秘客。1 分最弱，5 分最強。零推銷承諾為否決項。</p>
+
+  <div class="grid3" style="margin-bottom:16px">
+    <div class="field"><label class="f">受評人</label><input type="text" placeholder="姓名"></div>
+    <div class="field"><label class="f">門店</label><input type="text" placeholder="門店"></div>
+    <div class="field"><label class="f">評核期間</label><input type="text" value="2027 Q2"></div>
+  </div>
+
+  <div class="sect">A. 專業能力</div>
+  <div class="card" data-g="A">
+    <div class="score" data-c="療程手法熟練度"><div class="name">療程手法熟練度</div><div class="rate"></div></div>
+    <div class="score" data-c="幸福指數解讀能力"><div class="name">幸福指數解讀能力<small>能把數據翻成顧客聽得懂的話</small></div><div class="rate"></div></div>
+    <div class="score" data-c="療癒處方籤交付能力"><div class="name">療癒處方籤交付能力<small>逐項解說並簽名負責</small></div><div class="rate"></div></div>
+  </div>
+
+  <div class="sect">B. 領袖特質（Eagle 四特質）</div>
+  <div class="card" data-g="B">
+    <div class="score" data-c="熱切渴望"><div class="name">熱切渴望<small>對顧客的改變有真實的期待</small></div><div class="rate"></div></div>
+    <div class="score" data-c="堅定信念"><div class="name">堅定信念<small>相信不打擾也能做好業績</small></div><div class="rate"></div></div>
+    <div class="score" data-c="有效行動"><div class="name">有效行動<small>承諾的追蹤一定做到</small></div><div class="rate"></div></div>
+    <div class="score" data-c="鋼鐵意志"><div class="name">鋼鐵意志<small>面對業績壓力仍不推銷</small></div><div class="rate"></div></div>
+  </div>
+
+  <div class="sect">C. 零推銷承諾（否決項）</div>
+  <div class="card" data-g="C" style="border-color:var(--rose-line);background:#FFFDFD">
+    <div class="score" data-c="全程不主動推銷"><div class="name">全程不主動推銷<small>沉默模式下完全不介紹方案</small></div><div class="rate"></div></div>
+    <div class="score" data-c="遵守30秒互動原則"><div class="name">遵守 30 秒互動原則<small>訊息不超過 100 字、每月不超過 4 則</small></div><div class="rate"></div></div>
+    <div class="score" data-c="尊重沉默模式設定"><div class="name">尊重沉默模式設定<small>顧客關閉的管道絕不使用</small></div><div class="rate"></div></div>
+    <div class="score" data-c="不使用禁止話術"><div class="name">不使用禁止話術<small>不出現「團隊」「夥伴」「邀請朋友」等語彙</small></div><div class="rate"></div></div>
+  </div>
+
+  <div style="margin:16px 0">
+    <button class="btn btn-rose btn-sm" onclick="calc()">計算認證結果</button>
+  </div>
+
+  <div class="sect">認證結果</div>
+  <div class="kpis">
+    <div class="kpi"><div class="k">總平均</div><div class="v" id="s-avg">—</div><div class="d">滿分 5.0</div></div>
+    <div class="kpi"><div class="k">零推銷承諾最低分</div><div class="v" id="s-min">—</div><div class="d down">需 ≥4 分</div></div>
+    <div class="kpi"><div class="k">認證等級</div><div class="v" id="s-level" style="font-size:19px">—</div><div class="d">依總平均判定</div></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-title">認證標準</div>
+    <table class="table">
+      <tr><th>等級</th><th>條件</th><th>結果</th></tr>
+      <tr><td>金牌療癒師</td><td>總平均 ≥4.5 且零推銷承諾全部 ≥4</td><td><span class="tag ok">可帶新進同仁</span></td></tr>
+      <tr><td>合格療癒師</td><td>總平均 ≥4.0 且零推銷承諾全部 ≥4</td><td><span class="tag ink">可獨立服務</span></td></tr>
+      <tr><td>輔導中</td><td>總平均 ≥3.5，零推銷承諾有 1 項 =3</td><td><span class="tag warn">30 天內回訓</span></td></tr>
+      <tr><td>不予認證</td><td>總平均 &lt;3.5，或零推銷承諾任 1 項 ≤2</td><td><span class="tag warn">停止獨立服務</span></td></tr>
+    </table>
+    <p class="card-note">零推銷承諾是唯一具有否決權的項目。專業能力再強，只要違反零推銷承諾，即不予認證。</p>
+  </div>
+
+  <div class="note rose">
+    <strong>為什麼把「不推銷」放在認證裡</strong><br>
+    因為對顧客來說，這比手法好不好更重要。同業都在訓練「怎麼賣」，我們訓練「怎麼不賣」。
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var scores = {};
+
+document.querySelectorAll('.score').forEach(function (row) {
+  var key = row.dataset.c;
+  var box = row.querySelector('.rate');
+  for (var i = 1; i <= 5; i++) {
+    (function (n) {
+      var b = document.createElement('button');
+      b.textContent = n;
+      b.addEventListener('click', function () {
+        box.querySelectorAll('button').forEach(function (x) { x.classList.remove('on'); });
+        b.classList.add('on');
+        scores[key] = n;
+      });
+      box.appendChild(b);
+    })(i);
+  }
+});
+
+function calc() {
+  var all = Object.values(scores);
+  var total = document.querySelectorAll('.score').length;
+  if (all.length < total) {
+    toast('還有 ' + (total - all.length) + ' 項未評分');
+    return;
+  }
+  var avg = all.reduce(function (a, b) { return a + b; }, 0) / all.length;
+  var cKeys = ['全程不主動推銷', '遵守30秒互動原則', '尊重沉默模式設定', '不使用禁止話術'];
+  var cMin = Math.min.apply(null, cKeys.map(function (k) { return scores[k]; }));
+  var cAllOk = cKeys.every(function (k) { return scores[k] >= 4; });
+
+  document.getElementById('s-avg').textContent = avg.toFixed(1);
+  document.getElementById('s-min').textContent = cMin;
+  var lvl;
+  if (avg >= 4.5 && cAllOk) lvl = '金牌療癒師';
+  else if (avg >= 4.0 && cAllOk) lvl = '合格療癒師';
+  else if (avg >= 3.5 && cMin >= 3) lvl = '輔導中';
+  else lvl = '不予認證';
+  document.getElementById('s-level').textContent = lvl;
+  toast('認證結果：' + lvl);
+}
+
+function toast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function () { t.classList.remove('show'); }, 2400);
+}
+</script>
+<script src="gate.js"></script>
+</body>
+</html>

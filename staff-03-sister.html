@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>學姊遴選評分｜幸福家族</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap-wide">
+
+  <div class="brandbar">
+    <div class="brand"><span class="dot"></span><div>幸福家族 · 內部<small>學姊遴選評分</small></div></div>
+    <a class="backlink" href="index.html">回導覽</a>
+  </div>
+
+  <h1>學姊遴選評分表</h1>
+  <p class="lead">學姊是「資深家族成員」的榮譽身分，不是職務、不是幹部、沒有任務、沒有報酬。本表由客戶關係經理填寫，區主管覆核。</p>
+
+  <div class="grid3" style="margin-bottom:16px">
+    <div class="field"><label class="f">候選人</label><input type="text" placeholder="顧客稱謂"></div>
+    <div class="field"><label class="f">入會年資</label><input type="text" placeholder="例：2 年 3 個月"></div>
+    <div class="field"><label class="f">填寫人</label><input type="text" placeholder="客戶關係經理"></div>
+  </div>
+
+  <div class="sect">第一關：資格檢核（全部必須符合）</div>
+  <div class="card" id="gate">
+    <div class="switch"><div class="s-txt"><strong>入會滿一年以上</strong><span>且期間未曾中斷</span></div><button class="toggle" data-k="g1"></button></div>
+    <div class="switch"><div class="s-txt"><strong>從未提出客訴或違規紀錄</strong><span>含對同仁的不當對待</span></div><button class="toggle" data-k="g2"></button></div>
+    <div class="switch"><div class="s-txt"><strong>本人明確表達自願</strong><span>非由同仁勸說或暗示</span></div><button class="toggle" data-k="g3"></button></div>
+    <div class="switch"><div class="s-txt"><strong>已充分了解「零義務」條款</strong><span>並同意仍可隨時退出</span></div><button class="toggle" data-k="g4"></button></div>
+    <div class="switch"><div class="s-txt"><strong>無任何金錢或業績往來</strong><span>不得代收款項、不得經手交易</span></div><button class="toggle" data-k="g5"></button></div>
+  </div>
+
+  <div class="sect">第二關：適任性評分（1 最弱，5 最強）</div>
+  <div class="card" id="rate">
+    <div class="score" data-c="自然影響力"><div class="name">自然影響力<small>她的改變會讓人想問「妳最近怎麼了」</small></div><div class="rate"></div></div>
+    <div class="score" data-c="分享意願"><div class="name">分享意願<small>主動分享的頻率，非被要求</small></div><div class="rate"></div></div>
+    <div class="score" data-c="穩定出席"><div class="name">穩定回店<small>近一年回店頻率穩定</small></div><div class="rate"></div></div>
+    <div class="score" data-c="尊重他人"><div class="name">尊重他人<small>不批評其他顧客、不炫耀</small></div><div class="rate"></div></div>
+    <div class="score" data-c="界線意識"><div class="name">界線意識<small>不會過度熱心、不會施壓別人</small></div><div class="rate"></div></div>
+  </div>
+
+  <div class="sect">第三關：禁止事項確認（必須全部勾選）</div>
+  <div class="card" id="ban" style="border-color:var(--rose-line);background:#FFFDFD">
+    <div class="switch"><div class="s-txt"><strong>已告知：不得招募任何人</strong><span>沒有下線、沒有組織</span></div><button class="toggle" data-k="b1"></button></div>
+    <div class="switch"><div class="s-txt"><strong>已告知：不得代收款項</strong><span>任何金錢往來一律禁止</span></div><button class="toggle" data-k="b2"></button></div>
+    <div class="switch"><div class="s-txt"><strong>已告知：不得取得他人個資</strong><span>不得私下蒐集或轉傳資料</span></div><button class="toggle" data-k="b3"></button></div>
+    <div class="switch"><div class="s-txt"><strong>已告知：不得對外公告身分</strong><span>學姊身分只有她自己知道</span></div><button class="toggle" data-k="b4"></button></div>
+    <div class="switch"><div class="s-txt"><strong>已告知：無任何金錢報酬</strong><span>僅有年度感謝會表揚與專屬禮遇</span></div><button class="toggle" data-k="b5"></button></div>
+  </div>
+
+  <div style="margin:16px 0">
+    <button class="btn btn-rose btn-sm" onclick="calc()">產生遴選結果</button>
+  </div>
+
+  <div class="sect">遴選結果</div>
+  <div class="kpis">
+    <div class="kpi"><div class="k">資格檢核</div><div class="v" id="s-gate" style="font-size:19px">—</div><div class="d">5 項全部符合</div></div>
+    <div class="kpi"><div class="k">適任平均</div><div class="v" id="s-avg">—</div><div class="d">滿分 5.0</div></div>
+    <div class="kpi"><div class="k">禁止事項確認</div><div class="v" id="s-ban" style="font-size:19px">—</div><div class="d">5 項全部勾選</div></div>
+    <div class="kpi"><div class="k">最終建議</div><div class="v" id="s-final" style="font-size:19px">—</div><div class="d">三關全過才邀請</div></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="card-title">建議標準</div>
+    <table class="table">
+      <tr><th>條件</th><th>建議</th></tr>
+      <tr><td>三關全過，適任平均 ≥4.0</td><td><span class="tag ok">邀請擔任學姊</span></td></tr>
+      <tr><td>三關全過，適任平均 3.0-3.9</td><td><span class="tag ink">暫緩，半年後再評估</span></td></tr>
+      <tr><td>資格或禁止事項未全過</td><td><span class="tag warn">不予邀請</span></td></tr>
+    </table>
+  </div>
+
+  <div class="note gold">
+    <strong>最重要的安全設計</strong><br>
+    若試辦後發現「學姊」仍造成顧客誤解為傳銷，可直接廢除，家族制度完全不受影響。學姊是加分項，不是必要項。
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var scores = {}, gates = {}, bans = {};
+
+document.querySelectorAll('.toggle').forEach(function (t) {
+  t.addEventListener('click', function () {
+    t.classList.toggle('on');
+    var k = t.dataset.k;
+    if (k[0] === 'g') gates[k] = t.classList.contains('on');
+    if (k[0] === 'b') bans[k] = t.classList.contains('on');
+  });
+});
+
+document.querySelectorAll('.score').forEach(function (row) {
+  var key = row.dataset.c;
+  var box = row.querySelector('.rate');
+  for (var i = 1; i <= 5; i++) {
+    (function (n) {
+      var b = document.createElement('button');
+      b.textContent = n;
+      b.addEventListener('click', function () {
+        box.querySelectorAll('button').forEach(function (x) { x.classList.remove('on'); });
+        b.classList.add('on');
+        scores[key] = n;
+      });
+      box.appendChild(b);
+    })(i);
+  }
+});
+
+function calc() {
+  var gKeys = ['g1','g2','g3','g4','g5'], bKeys = ['b1','b2','b3','b4','b5'];
+  var gOk = gKeys.every(function (k) { return gates[k]; });
+  var bOk = bKeys.every(function (k) { return bans[k]; });
+  var all = Object.values(scores);
+  var total = document.querySelectorAll('.score').length;
+
+  document.getElementById('s-gate').textContent = gOk ? '通過' : '未通過';
+  document.getElementById('s-ban').textContent = bOk ? '通過' : '未通過';
+
+  if (all.length < total) {
+    document.getElementById('s-avg').textContent = all.length + '/' + total;
+    document.getElementById('s-final').textContent = '評分未完成';
+    toast('還有 ' + (total - all.length) + ' 項未評分');
+    return;
+  }
+
+  var avg = all.reduce(function (a, b) { return a + b; }, 0) / all.length;
+  document.getElementById('s-avg').textContent = avg.toFixed(1);
+
+  var f;
+  if (gOk && bOk && avg >= 4.0) f = '建議邀請';
+  else if (gOk && bOk && avg >= 3.0) f = '暫緩評估';
+  else f = '不予邀請';
+  document.getElementById('s-final').textContent = f;
+  toast('遴選結果：' + f);
+}
+
+function toast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function () { t.classList.remove('show'); }, 2400);
+}
+</script>
+<script src="gate.js"></script>
+</body>
+</html>

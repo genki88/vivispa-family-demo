@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>入會表單｜幸福家族</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brandbar">
+    <div class="brand"><span class="dot"></span><div>幸福家族<small>入會表單</small></div></div>
+    <a class="backlink" href="index.html">回導覽</a>
+  </div>
+
+  <div id="step-ask">
+    <h1>妳想要什麼樣的生活？</h1>
+    <p class="lead">選一句就好。之後隨時可以改，也可以不選。<br>整個過程 30 秒，不用填姓名、不用留資料。</p>
+
+    <div class="card">
+      <div class="option" data-v="我想重新喜歡鏡子裡的自己">
+        <div class="tick">✓</div>
+        <div class="txt"><strong>我想重新喜歡鏡子裡的自己</strong><span>適合人生轉折期的妳</span></div>
+      </div>
+      <div class="option" data-v="我想把緊繃的日子鬆開">
+        <div class="tick">✓</div>
+        <div class="txt"><strong>我想把緊繃的日子鬆開</strong><span>適合高壓、睡不好的妳</span></div>
+      </div>
+      <div class="option" data-v="我想優雅地與時間同行">
+        <div class="tick">✓</div>
+        <div class="txt"><strong>我想優雅地與時間同行</strong><span>適合重視抗老與長期保養的妳</span></div>
+      </div>
+      <div class="option" data-v="我想讓消費也成為善意">
+        <div class="tick">✓</div>
+        <div class="txt"><strong>我想讓消費也成為善意</strong><span>適合想做公益的妳</span></div>
+      </div>
+      <div class="option" data-v="我只想好好休息">
+        <div class="tick">✓</div>
+        <div class="txt"><strong>我只想好好休息</strong><span>不想被歸類、不想被打擾的妳（最推薦）</span></div>
+      </div>
+    </div>
+
+    <div class="note gold">
+      <strong>我們不會做的事</strong><br>
+      不會把妳分到任何組、不會給妳編號、不會有人來找妳開會、不會請妳帶朋友。
+    </div>
+
+    <div style="margin-top:18px">
+      <button class="btn btn-rose" id="submit" disabled>送出，完成入會</button>
+      <p class="card-note" style="text-align:center">送出後會立刻收到妳的家族護照</p>
+    </div>
+  </div>
+
+  <div id="step-done" class="hide">
+    <h1>歡迎回家。</h1>
+    <p class="lead">妳已經是幸福家族的一員。什麼都不用做，我們會記得妳。</p>
+
+    <div class="card tight" style="background:var(--rose-soft);border-color:var(--rose-line)">
+      <div class="card-title" style="color:var(--rose)">妳的生活主張</div>
+      <div style="font-size:16px;font-weight:700" id="chosen">—</div>
+      <p class="card-note">隨時可以改，不需要理由，也不會有人問妳為什麼。</p>
+    </div>
+
+    <div class="note ink">
+      <strong>接下來妳會收到什麼</strong><br>
+      每月最多 4 張卡片，每張 10 秒看完。全年加起來約 40 秒。
+    </div>
+
+    <div style="margin-top:18px">
+      <a class="btn btn-rose" href="customer-02-passport.html">看看我的家族護照</a>
+      <p style="text-align:center;margin-top:12px"><a href="index.html" style="font-size:13px">回首頁</a></p>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var chosen = '';
+document.querySelectorAll('.option').forEach(function (el) {
+  el.addEventListener('click', function () {
+    document.querySelectorAll('.option').forEach(function (o) { o.classList.remove('sel'); });
+    el.classList.add('sel');
+    chosen = el.dataset.v;
+    document.getElementById('submit').disabled = false;
+  });
+});
+
+document.getElementById('submit').addEventListener('click', function () {
+  if (!chosen) return;
+  document.getElementById('chosen').textContent = chosen;
+  document.getElementById('step-ask').classList.add('hide');
+  document.getElementById('step-done').classList.remove('hide');
+  try { localStorage.setItem('vf_claim', chosen); } catch (e) {}
+  toast('入會完成 · 已發送家族護照');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+function toast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function () { t.classList.remove('show'); }, 2400);
+}
+</script>
+<script src="gate.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>家族護照｜幸福家族</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brandbar">
+    <div class="brand"><span class="dot"></span><div>幸福家族<small>家族護照</small></div></div>
+    <a class="backlink" href="index.html">回導覽</a>
+  </div>
+
+  <div class="passport">
+    <div class="pf-top">
+      <div>
+        <div class="pf-brand">VIVISPA · FAMILY PASSPORT</div>
+        <div class="pf-name">林 ◯ 慧　小姐</div>
+      </div>
+      <div style="text-align:right;font-size:11px;opacity:.8;line-height:1.6">
+        入會日<br><strong style="font-size:13px">2027.03.14</strong>
+      </div>
+    </div>
+    <div class="pf-claim" id="claim">我只想好好休息</div>
+    <div class="pf-grid">
+      <div class="pf-cell"><div class="k">幸福天氣</div><div class="v">多雲</div></div>
+      <div class="pf-cell"><div class="k">專屬療癒師</div><div class="v">雅婷</div></div>
+      <div class="pf-cell"><div class="k">公益足跡</div><div class="v">NT$ 1,240</div></div>
+      <div class="pf-cell"><div class="k">療癒時數</div><div class="v">6.5 小時</div></div>
+    </div>
+  </div>
+
+  <p class="card-note" style="text-align:center;margin:12px 0 4px">護照上沒有隊名、沒有編號、沒有隊友、沒有階級。</p>
+
+  <h2>我的幸福天氣</h2>
+  <div class="weather w-cloud">
+    <div class="glyph">☁️</div>
+    <div>
+      <div class="label">本週狀態</div>
+      <div class="value">多雲</div>
+    </div>
+    <div style="margin-left:auto;text-align:right;font-size:12px;opacity:.9">
+      上週：陣雨<br>趨勢：轉好
+    </div>
+  </div>
+  <div class="card tight" style="margin-top:12px">
+    <div class="card-title">天氣是什麼意思</div>
+    <table class="table">
+      <tr><td>☀️ 晴</td><td>狀態很好，適合維持</td></tr>
+      <tr><td>☁️ 多雲</td><td>有點緊繃，建議放鬆加強</td></tr>
+      <tr><td>🌧️ 陣雨</td><td>明顯疲勞，建議深度修護</td></tr>
+      <tr><td>⛈️ 雷雨</td><td>需要好好休息，建議提前回店</td></tr>
+    </table>
+  </div>
+
+  <h2>我的生活主張</h2>
+  <div class="card">
+    <div style="font-size:16px;font-weight:700;margin-bottom:6px" id="claim2">我只想好好休息</div>
+    <p class="card-note">這只影響我們推什麼內容給妳，不影響價格、不影響權益、不影響服務。隨時可以改。</p>
+    <div style="margin-top:14px">
+      <button class="btn btn-ghost btn-sm" onclick="changeClaim()">更換生活主張</button>
+    </div>
+  </div>
+
+  <h2>我的公益足跡</h2>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+      <span style="font-size:13px;color:var(--grey)">累積公益金額</span>
+      <strong style="font-size:22px">NT$ 1,240</strong>
+    </div>
+    <div class="bar gold"><i style="width:41%"></i></div>
+    <p class="card-note">累積達 NT$ 3,000 將以妳的名義提撥至「偏鄉女性放鬆計畫」。每季公布明細與去向。</p>
+  </div>
+
+  <h2>我的專屬療癒師</h2>
+  <div class="card" style="display:flex;gap:14px;align-items:center">
+    <div style="width:52px;height:52px;border-radius:50%;background:var(--rose-soft);display:flex;align-items:center;justify-content:center;font-size:20px;flex:0 0 52px">👩</div>
+    <div>
+      <strong style="font-size:15px">雅婷</strong>
+      <p class="card-note" style="margin-top:2px">大坪林店 · 為妳服務 3 年 2 個月<br>她記得妳的每一次變化。</p>
+    </div>
+  </div>
+
+  <div class="note rose" style="margin-top:20px">
+    <strong>妳不需要做的事</strong><br>
+    不用出席任何活動、不用回覆任何訊息、不用帶朋友來、不用達成任何目標。
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var claims = [
+  '我想重新喜歡鏡子裡的自己',
+  '我想把緊繃的日子鬆開',
+  '我想優雅地與時間同行',
+  '我想讓消費也成為善意',
+  '我只想好好休息'
+];
+var cur = 4;
+try { var s = localStorage.getItem('vf_claim'); if (s) { var i = claims.indexOf(s); if (i >= 0) cur = i; } } catch (e) {}
+paint();
+
+function paint() {
+  document.getElementById('claim').textContent = claims[cur];
+  document.getElementById('claim2').textContent = claims[cur];
+}
+
+function changeClaim() {
+  cur = (cur + 1) % claims.length;
+  paint();
+  try { localStorage.setItem('vf_claim', claims[cur]); } catch (e) {}
+  toast('已改為：' + claims[cur]);
+}
+
+function toast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function () { t.classList.remove('show'); }, 2200);
+}
+</script>
+<script src="gate.js"></script>
+</body>
+</html>

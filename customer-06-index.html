@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>幸福指數自評｜幸福家族</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brandbar">
+    <div class="brand"><span class="dot"></span><div>幸福家族<small>幸福指數自評</small></div></div>
+    <a class="backlink" href="index.html">回導覽</a>
+  </div>
+
+  <div id="quiz">
+    <h1>4 個問題，30 秒</h1>
+    <p class="lead">沒有標準答案，憑直覺就好。這會決定今天療程的強度。</p>
+
+    <div class="card" id="q-box">
+      <div class="card-title" id="q-no">第 1 題 / 共 4 題</div>
+      <div style="font-size:16px;font-weight:700;margin-bottom:14px" id="q-t">—</div>
+      <div id="q-opts"></div>
+    </div>
+
+    <div class="bar ink"><i id="prog" style="width:0%"></i></div>
+    <p class="card-note" style="text-align:center">已作答 <span id="done">0</span> / 4</p>
+  </div>
+
+  <div id="result" class="hide">
+    <h1>今天的幸福天氣</h1>
+    <p class="lead">這是妳現在的狀態。我們會依這個結果調整今天的療程。</p>
+
+    <div class="weather w-cloud" id="res-weather">
+      <div class="glyph" id="res-g">☁️</div>
+      <div>
+        <div class="label">綜合狀態</div>
+        <div class="value" id="res-v">多雲</div>
+      </div>
+      <div style="margin-left:auto;text-align:right;font-size:12px;opacity:.9">
+        指數<br><strong id="res-score" style="font-size:17px">—</strong>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="card-title">今天的療程建議</div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:6px" id="res-adv">—</div>
+      <p class="card-note" id="res-why">—</p>
+    </div>
+
+    <div class="card tight">
+      <div class="card-title">四項分數</div>
+      <div id="res-bars"></div>
+    </div>
+
+    <div style="margin-top:16px">
+      <button class="btn btn-ghost" onclick="reset()">重新自評</button>
+      <p style="text-align:center;margin-top:12px"><a href="index.html" style="font-size:13px">回首導覽</a></p>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var QS = [
+  { t:'這週的睡眠品質如何？', o:['睡得還不錯','偶爾睡不好','常常睡不好','幾乎睡不著'] },
+  { t:'身體的緊繃程度？',   o:['沒什麼感覺','有一點緊','明顯緊繃','很嚴重、會痠痛'] },
+  { t:'精神狀態如何？',     o:['很有精神','還過得去','容易累','快撐不住了'] },
+  { t:'最近的心情？',       o:['愉快','平穩','有點低落','煩躁不安'] }
+];
+var KEYS = ['睡眠','緊繃','精神','心情'];
+var ans = [];
+var idx = 0;
+
+render();
+
+function render() {
+  if (idx >= QS.length) { show(); return; }
+  document.getElementById('q-no').textContent = '第 ' + (idx + 1) + ' 題 / 共 4 題';
+  document.getElementById('q-t').textContent = QS[idx].t;
+  var box = document.getElementById('q-opts');
+  box.innerHTML = '';
+  QS[idx].o.forEach(function (label, i) {
+    var d = document.createElement('div');
+    d.className = 'option';
+    d.innerHTML = '<div class="tick">✓</div><div class="txt"><strong>' + label + '</strong></div>';
+    d.addEventListener('click', function () { pick(i); });
+    box.appendChild(d);
+  });
+  document.getElementById('prog').style.width = (idx / QS.length * 100) + '%';
+  document.getElementById('done').textContent = idx;
+}
+
+function pick(v) {
+  ans[idx] = v;
+  idx++;
+  render();
+}
+
+function show() {
+  document.getElementById('quiz').classList.add('hide');
+  document.getElementById('result').classList.remove('hide');
+  document.getElementById('prog').style.width = '100%';
+  document.getElementById('done').textContent = 4;
+
+  var total = ans.reduce(function (a, b) { return a + b; }, 0);
+  var w, g, v, adv, why, cls;
+  if (total <= 2)       { cls='w-sun';   g='☀️'; v='晴';   adv='維持現在的節奏，做 60 分鐘基礎保養即可。';   why='妳的狀態很好，不需要加強，過度處理反而多餘。'; }
+  else if (total <= 5)  { cls='w-cloud'; g='☁️'; v='多雲'; adv='建議 60-90 分鐘深度放鬆，加強肩頸。';       why='有一點緊繃累積，現在處理效果最好。'; }
+  else if (total <= 8)  { cls='w-rain';  g='🌧️'; v='陣雨'; adv='建議 90 分鐘深度修護，搭配頭皮放鬆。';     why='疲勞已經明顯，只做表面保養會不夠。'; }
+  else                  { cls='w-storm'; g='⛈️'; v='雷雨'; adv='建議 120 分鐘完整療癒，並安排下次回診。';   why='妳撐太久了。今天不是保養，是修復。'; }
+
+  document.getElementById('res-weather').className = 'weather ' + cls;
+  document.getElementById('res-g').textContent = g;
+  document.getElementById('res-v').textContent = v;
+  document.getElementById('res-score').textContent = total + ' / 12';
+  document.getElementById('res-adv').textContent = adv;
+  document.getElementById('res-why').textContent = why;
+
+  var bars = document.getElementById('res-bars');
+  bars.innerHTML = '';
+  KEYS.forEach(function (k, i) {
+    var pct = Math.round(ans[i] / 3 * 100);
+    var div = document.createElement('div');
+    div.style.margin = '10px 0';
+    div.innerHTML = '<div style="display:flex;justify-content:space-between;font-size:12.5px">' +
+      '<span>' + k + '</span><span style="color:var(--grey)">' + ans[i] + ' / 3</span></div>' +
+      '<div class="bar"><i style="width:' + pct + '%"></i></div>';
+    bars.appendChild(div);
+  });
+
+  toast('已產生今日幸福天氣：' + v);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function reset() {
+  ans = []; idx = 0;
+  document.getElementById('result').classList.add('hide');
+  document.getElementById('quiz').classList.remove('hide');
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function () { t.classList.remove('show'); }, 2400);
+}
+</script>
+<script src="gate.js"></script>
+</body>
+</html>

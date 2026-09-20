@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>沉默模式設定｜幸福家族</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brandbar">
+    <div class="brand"><span class="dot"></span><div>幸福家族<small>沉默模式</small></div></div>
+    <a class="backlink" href="index.html">回導覽</a>
+  </div>
+
+  <h1>沉默模式</h1>
+  <p class="lead">開啟後，顧問只服務、不銷售。我們承諾不主動推銷任何東西。若違反一次，該次療程免費。</p>
+
+  <div class="card">
+    <div class="switch">
+      <div class="s-txt"><strong>開啟沉默模式</strong><span>顧問不會主動推薦任何療程或產品</span></div>
+      <button class="toggle on" id="t-silent"></button>
+    </div>
+    <div class="switch">
+      <div class="s-txt"><strong>不要電話</strong><span>只用 LINE 通知，不撥電話</span></div>
+      <button class="toggle on" id="t-call"></button>
+    </div>
+    <div class="switch">
+      <div class="s-txt"><strong>不要節慶問候</strong><span>只保留天氣卡與療程提醒</span></div>
+      <button class="toggle" id="t-fest"></button>
+    </div>
+    <div class="switch">
+      <div class="s-txt"><strong>價格公開顯示</strong><span>所有療程與產品價格直接標示，不需詢價</span></div>
+      <button class="toggle on" id="t-price"></button>
+    </div>
+  </div>
+
+  <div class="note rose">
+    <strong>沉默模式的意義</strong><br>
+    美業最大的痛點不是價格，是「被推銷」。同業都知道，卻沒有人敢承諾不推銷——因為那等於放棄短期業績。這就是我們的縫隙。
+  </div>
+
+  <h2>開啟後，妳的體驗會變成</h2>
+  <div class="card tight">
+    <table class="table">
+      <tr><td>療程中</td><td>顧問只專注服務，不會介紹方案</td></tr>
+      <tr><td>療程後</td><td>只交付「療癒處方籤」，說明與簽名</td></tr>
+      <tr><td>想買東西時</td><td>掃 QR 自助選購，價格公開</td></tr>
+      <tr><td>想續約時</td><td>手機自己按，不需當面談</td></tr>
+      <tr><td>不想要時</td><td>沒有任何追蹤或挽留</td></tr>
+    </table>
+  </div>
+
+  <h2>違反承諾的處理</h2>
+  <div class="card">
+    <div class="score">
+      <div class="name">第 1 次違反<small>顧問主動推銷</small></div>
+      <span class="tag warn">該次療程免費</span>
+    </div>
+    <div class="score">
+      <div class="name">第 2 次違反<small>同一門店再發生</small></div>
+      <span class="tag warn">門店主管連帶檢討</span>
+    </div>
+    <div class="score">
+      <div class="name">顧客申訴<small>可透過 LINE 一鍵反映</small></div>
+      <span class="tag ok">24 小時內回覆</span>
+    </div>
+  </div>
+
+  <div style="margin-top:18px">
+    <button class="btn btn-rose" onclick="save()">儲存設定</button>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+document.querySelectorAll('.toggle').forEach(function (t) {
+  t.addEventListener('click', function () { t.classList.toggle('on'); });
+});
+
+function save() {
+  var on = document.getElementById('t-silent').classList.contains('on');
+  toast(on ? '已開啟沉默模式，我們不會再主動推銷' : '已關閉沉默模式');
+}
+
+function toast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function () { t.classList.remove('show'); }, 2600);
+}
+</script>
+<script src="gate.js"></script>
+</body>
+</html>

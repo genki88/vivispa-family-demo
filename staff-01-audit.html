@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>互動稽核表｜幸福家族</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap-wide">
+
+  <div class="brandbar">
+    <div class="brand"><span class="dot"></span><div>幸福家族 · 內部<small>互動稽核表</small></div></div>
+    <a class="backlink" href="index.html">回導覽</a>
+  </div>
+
+  <h1>每月互動稽核表</h1>
+  <p class="lead">用途：確保「30 秒互動原則」與「不對顧客賦予責任」兩條鐵則沒有被門店日常運作稀釋。由店長每月填寫，區主管覆核。</p>
+
+  <div class="grid3" style="margin-bottom:16px">
+    <div class="field"><label class="f">稽核月份</label><input type="text" value="2027 年 6 月"></div>
+    <div class="field"><label class="f">填寫人（店長）</label><input type="text" placeholder="姓名"></div>
+    <div class="field"><label class="f">覆核人（區主管）</label><input type="text" placeholder="姓名"></div>
+  </div>
+
+  <div class="sect">各店數據</div>
+  <div class="scroll-x">
+    <table class="table" id="tbl">
+      <thead>
+        <tr>
+          <th>門店</th>
+          <th>當月互動<br>次數（上限 4）</th>
+          <th>30 天<br>開啟率（≥70%）</th>
+          <th>封鎖率<br>（≤5%）</th>
+          <th>違規話術<br>次數（=0）</th>
+          <th>需出席<br>場合（≤1/年）</th>
+          <th>顧客責任<br>項數（=0）</th>
+          <th>判定</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-r><td>大坪林店</td><td><input type="number" value="4" min="0"></td><td><input type="number" value="78" min="0" max="100"></td><td><input type="number" value="2" min="0" max="100"></td><td><input type="number" value="0" min="0"></td><td><input type="number" value="0" min="0"></td><td><input type="number" value="0" min="0"></td><td class="verdict"></td></tr>
+        <tr data-r><td>三重三和店</td><td><input type="number" value="6" min="0"></td><td><input type="number" value="64" min="0" max="100"></td><td><input type="number" value="7" min="0" max="100"></td><td><input type="number" value="1" min="0"></td><td><input type="number" value="0" min="0"></td><td><input type="number" value="0" min="0"></td><td class="verdict"></td></tr>
+        <tr data-r><td>新店店</td><td><input type="number" value="3" min="0"></td><td><input type="number" value="85" min="0" max="100"></td><td><input type="number" value="1" min="0" max="100"></td><td><input type="number" value="0" min="0"></td><td><input type="number" value="0" min="0"></td><td><input type="number" value="0" min="0"></td><td class="verdict"></td></tr>
+        <tr data-r><td>永和店</td><td><input type="number" value="4" min="0"></td><td><input type="number" value="72" min="0" max="100"></td><td><input type="number" value="4" min="0" max="100"></td><td><input type="number" value="0" min="0"></td><td><input type="number" value="0" min="0"></td><td><input type="number" value="0" min="0"></td><td class="verdict"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin:16px 0">
+    <button class="btn btn-rose btn-sm" onclick="calc()">重新計算判定</button>
+  </div>
+
+  <div class="sect">稽核結果</div>
+  <div class="kpis">
+    <div class="kpi"><div class="k">通過門店</div><div class="v" id="s-pass">—</div><div class="d">全部 6 項達標</div></div>
+    <div class="kpi"><div class="k">需輔導門店</div><div class="v" id="s-fail">—</div><div class="d down">任一項未達標</div></div>
+    <div class="kpi"><div class="k">平均開啟率</div><div class="v" id="s-open">—</div><div class="d">目標 ≥70%</div></div>
+    <div class="kpi"><div class="k">違規話術合計</div><div class="v" id="s-viol">—</div><div class="d">目標 0 次</div></div>
+  </div>
+
+  <div class="sect">判定標準</div>
+  <div class="card tight">
+    <table class="table">
+      <tr><th>項目</th><th>標準</th><th>未達標的處理</th></tr>
+      <tr><td>當月互動次數</td><td>≤ 4 次</td><td>立即停止超額推播，重新檢視排程</td></tr>
+      <tr><td>30 天開啟率</td><td>≥ 70%</td><td>檢討內容品質，不得改為增加頻率</td></tr>
+      <tr><td>封鎖率</td><td>≤ 5%</td><td>超過即全面檢討互動設計</td></tr>
+      <tr><td>違規話術次數</td><td>= 0</td><td>依第十五章禁止話術清單處理</td></tr>
+      <tr><td>需出席場合</td><td>≤ 1 次/年</td><td>取消該活動，改為 30 秒數位互動</td></tr>
+      <tr><td>顧客責任項數</td><td>= 0</td><td>設計階段即刪除，不得例外</td></tr>
+    </table>
+  </div>
+
+  <div class="note rose">
+    <strong>稽核的精神</strong><br>
+    這張表不是用來衝高開啟率，而是用來防止門店為了業績，把「不打擾」變成「一直打擾」。開啟率不足時，唯一允許的解法是「把內容做得更好」，不是「發更多」。
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function calc() {
+  var rows = document.querySelectorAll('#tbl tbody tr[data-r]');
+  var pass = 0, openSum = 0, violSum = 0;
+  rows.forEach(function (r) {
+    var v = r.querySelectorAll('input');
+    var cnt = +v[0].value, open = +v[1].value, block = +v[2].value,
+        vio = +v[3].value, att = +v[4].value, duty = +v[5].value;
+    var ok = (cnt <= 4) && (open >= 70) && (block <= 5) && (vio === 0) && (att <= 1) && (duty === 0);
+    var cell = r.querySelector('.verdict');
+    cell.innerHTML = ok ? '<span class="tag ok">通過</span>' : '<span class="tag warn">需輔導</span>';
+    if (ok) pass++;
+    openSum += open; violSum += vio;
+  });
+  document.getElementById('s-pass').textContent = pass + ' / ' + rows.length;
+  document.getElementById('s-fail').textContent = (rows.length - pass) + ' / ' + rows.length;
+  document.getElementById('s-open').textContent = Math.round(openSum / rows.length) + '%';
+  document.getElementById('s-viol').textContent = violSum + ' 次';
+}
+
+document.querySelectorAll('#tbl input').forEach(function (i) {
+  i.addEventListener('change', calc);
+});
+
+calc();
+
+function toast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function () { t.classList.remove('show'); }, 2000);
+}
+</script>
+<script src="gate.js"></script>
+</body>
+</html>
